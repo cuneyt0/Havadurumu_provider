@@ -17,7 +17,7 @@ class WeatherViewModel with ChangeNotifier {
   late Weather _getirilenWeather;
 
   WeatherViewModel() {
-    _getirilenWeather=Weather();
+    _getirilenWeather = Weather();
     _state = WeatherState.InitialWeatherState;
   }
 
@@ -39,5 +39,18 @@ class WeatherViewModel with ChangeNotifier {
       state = WeatherState.WeatherErrorState;
     }
     return _getirilenWeather;
+  }
+
+  Future<Weather> havaDurumunuGuncelle(String sehirAdi) async {
+    try {
+      _getirilenWeather = await _repository.getWeather(sehirAdi);
+      state = WeatherState.WeatherLoadedState;
+    } catch (e) {}
+    return _getirilenWeather;
+  }
+  String havaDurumuKisaltmasi(){
+    return getirilenWeather.consolidatedWeather[0].weatherStateAbbr;
+
+
   }
 }

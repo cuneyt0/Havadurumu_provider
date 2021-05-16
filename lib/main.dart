@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
           MaterialApp(
               title: 'WeatherApp Provider',
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-              ),
+              theme: myThemeViewModel.myTheme.tema,
               home: ChangeNotifierProvider<WeatherViewModel>(
                 create: (context) => locator<WeatherViewModel>(),
                 child: WeatherApp(),
